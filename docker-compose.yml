@@ -1,0 +1,25 @@
+version: '2'
+
+services:
+  nginx:
+    build: ./nginx
+    ports:
+     - 8000:80
+
+  shell:
+    build: ./shell
+    container_name: shell
+    volumes:
+    - ../crm_schools_frontend:/data/crm_schools/httpdocs_angular
+    depends_on:
+    - angular
+  angular:
+   build: ./angular
+   ports:
+    - 4200:80
+   volumes:
+    - ../crm_schools_frontend:/data/crm_schools/httpdocs_angular
+   depends_on:
+   - nginx
+
+
