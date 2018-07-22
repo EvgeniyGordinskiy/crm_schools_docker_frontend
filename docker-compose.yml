@@ -5,10 +5,13 @@ services:
     build: ./nginx
     ports:
      - 8000:80
-
+    volumes:
+    - ../crm_schools_frontend:/data/crm_schools/httpdocs_angular
+    depends_on:
+    - angular
   shell:
     build: ./shell
-    container_name: shell
+    container_name: shell_front
     volumes:
     - ../crm_schools_frontend:/data/crm_schools/httpdocs_angular
     depends_on:
@@ -19,7 +22,5 @@ services:
     - 4200:80
    volumes:
     - ../crm_schools_frontend:/data/crm_schools/httpdocs_angular
-   depends_on:
-   - nginx
 
 
